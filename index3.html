@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cactus Collector</title>
+</head>
+
+<body>
+
+<h1> Cactus Collector! </h1>
+
+<p> <u>Instructions:</u> You will be given a random number at the start of the game.  Click the cacti to add up to that number!  If you get exactly to the target #, that's one win.  If you go over the target #, that's one loss.  Good luck! </p><br>
+
+<h3> Target Number: <span id="targetNumber"></span></h3>
+
+<div id = "counterDiv">Current Total: </div><br>
+<div id = "crystalDiv"></div><br>
+<div id = "winDiv">Wins:</div><br>
+<div id = "lossesDiv">Losses:</div><br>
+<button id = "buttonReset">New Game!</button>
+
+<style>
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: tan;
+}
+
+.crystalClass {
+      width: 100px;
+      height: 100px;
+    } 
+
+h1, p, h3 { 
+    text-align: center;
+}    
+
+#counterDiv {
+    border: solid brown;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+
+#winDiv, #lossesDiv {
+    border: dotted brown;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+
+#buttonReset {
+    display: flex;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+    margin: auto;
+}
+
+#crystalDiv {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var crystalDiv = $("#crystalDiv");
+        var counter = 0;
+        var winsVar = 0;
+        var lossesVar = 0;
+        var crystalImages = ["./assets/images/cactus1.jpg", "./assets/images/cactus4.jpg", "./assets/images/cactus3.jpg", "./assets/images/cactus2.jpg"]
+
+        var targetNumVar = Math.floor(Math.random() * 10) + 50;
+        $("#targetNumber").text(targetNumVar);
+
+        var randomNum = Math.floor(Math.random() * 12) + 1;
+
+        var resetGame = function() {
+            console.log("New Game!");
+            targetNumVar = Math.floor(Math.random() * 10) + 50;
+                $("#targetNumber").text(targetNumVar);            
+            counter = 0;
+            $("#crystalDiv").empty();
+            for (var i = 0; i < 4; i++) {
+            randomNum = Math.floor(Math.random() * 12) + 1;
+            crystalPic = $("<img>");
+            crystalPic.addClass("crystalClass");
+            crystalPic.attr("src", crystalImages[i]);
+            crystalDiv.append(crystalPic);
+            crystalPic.attr("data-crystalNum", randomNum);
+        }
+            $("#counterDiv").html("Current Total: " + counter);
+            console.log(counter + "Reset");
+            randomNum = Math.floor(Math.random() * 12) + 1; 
+        }
+
+        for (var i = 0; i < 4; i++) {
+            randomNum = Math.floor(Math.random() * 12) + 1;
+            var crystalPic = $("<img>");
+            crystalPic.addClass("crystalClass");
+            crystalPic.attr("src", crystalImages[i]);
+            crystalDiv.append(crystalPic);
+            crystalPic.attr("data-crystalNum", randomNum);
+        }
+
+        crystalDiv.on("click", ".crystalClass", function() { 
+            var crystalNum = ($(this).attr("data-crystalNum"));
+            crystalNum = parseInt(crystalNum);
+            console.log(crystalNum);
+
+           counter += crystalNum;
+            $("#counterDiv").html("Current Total: " + counter);
+
+            if (counter === targetNumVar) {
+            console.log("W" + winsVar);
+            winsVar +=1;
+            $("#winDiv").html("Wins: " + winsVar);
+            resetGame();
+            } else if (counter >= targetNumVar) {
+            console.log("L" + lossesVar);
+            lossesVar +=1;
+            $("#lossesDiv").html("Losses: " + lossesVar);
+            console.log(counter + "One");
+            resetGame();
+            }
+        });
+        
+        var buttonForGame = document.getElementById("buttonReset");
+        buttonForGame.onclick = function () {
+            resetGame();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
+
+

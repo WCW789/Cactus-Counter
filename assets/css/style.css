@@ -1,0 +1,50 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: tan;
+}
+
+.crystalClass {
+      width: 100px;
+      height: 100px;
+    } 
+
+h1 { 
+    text-align: center;
+    font-size: 40px;
+}    
+
+h3 { 
+    text-align: center;
+    font-size: 20px;
+}    
+
+p {
+    text-align: center; 
+}
+
+#counterDiv {
+    border: solid brown;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+
+#winDiv, #lossesDiv {
+    border: dotted brown;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+
+#buttonReset {
+    display: flex;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+    margin: auto;
+}
+
+#crystalDiv {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
