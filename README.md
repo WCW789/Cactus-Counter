@@ -1,1 +1,1 @@
-# week-4-game
+This is a counting game: each picture of a cactus holds a random number, and the goal is to get to the target number on the screen.  For each new game, the target number changes as well as the number that each image holds
